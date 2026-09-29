@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ur-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday to Me 🎂</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg1:#dfe6f2;--bg2:#c9d4e8;--card:#ffffff;--fg:#0f172a;--dim:#5b6b86;--acc:#1d4ed8;--line:#cbd5e6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#0a1020;--bg2:#131d38;--card:#111a30;--fg:#e8eefc;--dim:#8fa0c2;--acc:#38bdf8;--line:#26355a}}
+:root[data-theme="dark"]{--bg1:#0a1020;--bg2:#131d38;--card:#111a30;--fg:#e8eefc;--dim:#8fa0c2;--acc:#38bdf8;--line:#26355a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(160deg,var(--bg1),var(--bg2));color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 22px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.28)}
+.cake{font-size:56px;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+h1{margin:6px 0 18px;font-size:26px;letter-spacing:.3px}
+input{width:100%;font:inherit;padding:14px;border-radius:12px;border:2px solid var(--line);background:transparent;color:var(--fg);outline:none;text-align:center}
+input:focus{border-color:var(--acc)}
+button{font:inherit;font-weight:600;margin-top:12px;width:100%;padding:13px;border:0;border-radius:12px;background:var(--acc);color:#fff}
+:root:not([data-theme="light"]) button{color:#06121f}
+button.ghost{background:transparent;color:var(--acc);border:2px solid var(--acc);margin-top:14px}
+#res{display:none;margin-top:20px;animation:pop .4s ease}
+@keyframes pop{from{opacity:0;transform:scale(.92)}}
+p{margin:6px 0 0;color:var(--dim)}
+.pay{position:relative;margin-top:16px;border-radius:18px;padding:20px 18px;text-align:left;color:#f6e7b4;background:radial-gradient(circle at 85% 0%,rgba(245,197,66,.28),transparent 45%),linear-gradient(135deg,#0b1224,#1a2647 60%,#0b1224);border:1px solid #c9a24a;box-shadow:0 10px 28px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.05);overflow:hidden}
+.top{display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800;letter-spacing:1px;font-size:17px;color:#f5c542}
+.tag{font-size:10px;letter-spacing:2px;color:#b9a56a}
+.chip{width:42px;height:32px;margin:18px 0 12px;border-radius:7px;background:linear-gradient(135deg,#f5d77a,#b88a1e);position:relative}
+.chip:before,.chip:after{content:"";position:absolute;left:0;right:0;height:1px;background:rgba(0,0,0,.3)}
+.chip:before{top:11px}.chip:after{top:21px}
+.cnum{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:22px;font-weight:700;letter-spacing:1.5px;color:#fff;text-shadow:0 1px 6px rgba(245,197,66,.35)}
+.lbl{margin-top:16px;font-size:10px;letter-spacing:2px;color:#b9a56a}
+.nm{font-size:17px;font-weight:700;letter-spacing:1px;color:#f5e7b0;text-transform:uppercase}
+.note{margin-top:14px;font-size:12px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="cake">🎂</div>
+  <h1>Happy Birthday to Me!</h1>
+  <div id="form">
+    <input id="wish" type="text" maxlength="120" placeholder="Enter your wishes here... ✨" autocomplete="off">
+    <button id="go">Send Wish 🎁</button>
+  </div>
+  <div id="res">
+    <div id="thanks" style="font-weight:600"></div>
+    <p>Ab wishes sirf <b style="color:var(--acc)">payment</b> ki shakal mein qabool hain 💸😆</p>
+    <div class="pay">
+      <div class="top"><span class="brand">JazzCash</span><span class="tag">BIRTHDAY WISH CARD</span></div>
+      <div class="chip"></div>
+      <div class="cnum">03286272784</div>
+      <div class="lbl">ACCOUNT TITLE</div>
+      <div class="nm">Abdur Rafay</div>
+    </div>
+    <button class="ghost" id="cp">Copy Number aur Payment Bhejo 💸</button>
+    <div class="note">Khali dua se cake nahi aata bhai 🎂 Payment zaroor karna, warna wish adhoori hai 😜</div>
+  </div>
+</div>
+<script>
+var NUM="03286272784";
+var w=document.getElementById("wish"),res=document.getElementById("res");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function go(){
+  var v=w.value.trim();
+  if(!v){w.placeholder="Kuch to likho yaar... 🥺";w.focus();return}
+  document.getElementById("thanks").innerHTML="Shukriya! 🥹 \""+esc(v)+"\" dil ko chhu gayi";
+  document.getElementById("form").style.display="none";
+  res.style.display="block";
+}
+document.getElementById("go").onclick=go;
+w.addEventListener("keydown",function(e){if(e.key==="Enter")go()});
+document.getElementById("cp").onclick=function(){
+  var b=this;
+  try{navigator.clipboard.writeText(NUM).then(function(){b.textContent="Copied ✔"},function(){b.textContent=NUM})}
+  catch(e){b.textContent=NUM}
+};
+</script>
+</body>
+</html>
